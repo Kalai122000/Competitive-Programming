@@ -69,3 +69,47 @@ int main() // driver function
     cout << ans;
     return 0;
 }
+
+
+=============================================
+
+ #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+char* convert(const char* s, int numRows) {
+    int len = strlen(s);
+    if (numRows == 1 || numRows >= len) {
+        char *res = malloc(len + 1);
+        strcpy(res, s);
+        return res;
+    }
+
+    char *res = malloc(len + 1);
+    int pos = 0;
+
+    for (int row = 0; row < numRows; row++) {
+        int step1 = 2 * (numRows - row - 1);
+        int step2 = 2 * row;
+        int i = row;
+
+        while (i < len) {
+            res[pos++] = s[i];
+            if (row == 0 || row == numRows - 1) {
+                i += 2 * (numRows - 1);
+            } else {
+                i += (pos % 2 == 1) ? step1 : step2;
+            }
+        }
+    }
+    res[pos] = '\0';
+    return res;
+}
+
+int main() {
+    char str[] = "PAYPALISHIRING";
+    char *ans = convert(str, 3);
+    printf("%s\n", ans);
+    free(ans);
+    return 0;
+}
