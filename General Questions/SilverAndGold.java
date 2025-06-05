@@ -57,5 +57,35 @@ public class SilverAndGold{
 }
 
 
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#include <stdio.h>
+#include <string.h>
+
+char* flipCoins(int N, char* s) {
+    int count0 = 0, count1 = 0;
+    for (int i = 0; i < N; i++) {
+        if (s[i] == '0') {
+            count0++;
+        } else {
+            count1++;
+        }
+    }
+    
+    if (count0 % 2 == 0) {
+        return "Yes";
+    } else {
+        return "No";
+    }
+}
+
+int main() {
+    printf("%s\n", flipCoins(8, "10010100"));    // test case 1
+    printf("%s\n", flipCoins(8, "11001100"));    // test case 2
+    printf("%s\n", flipCoins(2, "00"));         // test case 3
+    
+    return 0;
+}
+
+
 
 
